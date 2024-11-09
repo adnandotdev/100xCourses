@@ -86,7 +86,7 @@ export default function AddCourse() {
   };
 
   return (
-    <div className="max-w-4xl mt-10 mx-auto py-12 md:w-3/4 lg:w-1/2 bg-white shadow-md rounded-lg p-6">
+    <div className="max-w-4xl mx-auto my-2 md:w-3/4 lg:w-1/2 bg-white shadow-md rounded-lg p-6">
       <h1 className="text-4xl font-bold text-center text-indigo-600 mb-8">
         Add New Course
       </h1>

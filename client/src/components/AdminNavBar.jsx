@@ -6,7 +6,6 @@ export default function AdminNavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -86,34 +85,33 @@ export default function AdminNavBar() {
                 />
               </button>
               <div className="absolute right-0 w-auto bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-200">
-                  <ul className="p-2">
-                    <li>
-                      <button
-                        onClick={() => navigate("/admin/profile")}
-                        className="w-full px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Profile
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => navigate("/settings")}
-                        className="w-full px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Settings
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={handleLogout}
-                        className="w-full t px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-            
+                <ul className="p-2">
+                  <li>
+                    <button
+                      onClick={() => navigate("/admin/profile")}
+                      className="w-full px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Profile
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate("/settings")}
+                      className="w-full px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Settings
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full t px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
 
               {/* {isOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
@@ -150,45 +148,65 @@ export default function AdminNavBar() {
           </div>
         </div>
       </div>
-
       {isMenuOpen && (
-        <div className="md:hidden absolute w-full flex flex-col bg-white shadow-lg py-4">
-          <button onClick={toggleMenu} className="self-end absolute p-2">
-            <img src="../assets/cancel.png" alt="Cancel" className="w-5" />
-          </button>
-          <NavLink
-            onClick={toggleMenu}
-            to="/admin/profile"
-            className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
-          >
-            My Profile
-          </NavLink>
-          <NavLink
-            onClick={toggleMenu}
-            to="/admin"
-            className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
-          >
-            Dashboard
-          </NavLink>
-          <NavLink
-            onClick={toggleMenu}
-            to="/admin/courses"
-            className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
-          >
-            My Courses
-          </NavLink>
-          <NavLink
-            onClick={toggleMenu}
-            to="/admin/add"
-            className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
-          >
-            Add Courses
-          </NavLink>
-          <div className="flex flex-col px-4 items-center mt-4">
-            <button onClick={handleLogout} className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full mb-2">
-              Logout
+        <div className="min-h-screen absolute w-full bg-transparent" onClick={toggleMenu}>
+          <div className="md:hidden absolute w-full flex flex-col bg-white shadow-lg py-4">
+            <button onClick={toggleMenu} className="self-end absolute p-2">
+              <img src="../assets/cancel.png" alt="Cancel" className="w-5" />
             </button>
-            {/* <button className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full">Signup</button> */}
+            <NavLink
+              onClick={toggleMenu}
+              to="/admin/profile"
+              className={({ isActive }) =>
+                isActive
+                  ? "block px-4 py-2 text-indigo-900 font-bold"
+                  : "block px-4 py-2 text-indigo-600 font-bold"
+              }
+            >
+              My Profile
+            </NavLink>
+            <NavLink
+              onClick={toggleMenu}
+              to="/admin"
+              className={({ isActive }) =>
+                isActive
+                  ? "block px-4 py-2 text-indigo-900 font-bold"
+                  : "block px-4 py-2 text-indigo-600 font-bold"
+              }
+            >
+              Dashboard
+            </NavLink>
+            <NavLink
+              onClick={toggleMenu}
+              to="/admin/courses"
+              className={({ isActive }) =>
+                isActive
+                  ? "block px-4 py-2 text-indigo-900 font-bold"
+                  : "block px-4 py-2 text-indigo-600 font-bold"
+              }
+            >
+              My Courses
+            </NavLink>
+            <NavLink
+              onClick={toggleMenu}
+              to="/admin/add"
+              className={({ isActive }) =>
+                isActive
+                  ? "block px-4 py-2 text-indigo-900 font-bold"
+                  : "block px-4 py-2 text-indigo-600 font-bold"
+              }
+            >
+              Add Courses
+            </NavLink>
+            <div className="flex flex-col px-4 items-center mt-4">
+              <button
+                onClick={handleLogout}
+                className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full mb-2"
+              >
+                Logout
+              </button>
+              {/* <button className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full">Signup</button> */}
+            </div>
           </div>
         </div>
       )}

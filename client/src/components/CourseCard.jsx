@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function CourseCard(props) {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
   const [imgBlob, setImgBlob] = useState(null);
 
   useEffect(() => {
@@ -11,6 +12,7 @@ export default function CourseCard(props) {
         const response = await fetch(props.imgUrl);
         const blob = await response.blob();
         setImgBlob(blob);
+        setShow(true);
       } catch (error) {
         console.error("Error fetching image:", error);
       }
@@ -33,7 +35,7 @@ export default function CourseCard(props) {
     });
   };
   const handleClickOnCard = () => {
-    navigate(props.navigateOnCourse,{
+    navigate(props.navigateOnCourse, {
       state: {
         id: props.id,
         courseTitle: props.courseTitle,
@@ -47,7 +49,11 @@ export default function CourseCard(props) {
   };
 
   return (
-    <div className="bg-white border-2 border-gray-600 rounded-lg shadow-lg w-full max-w-xs mx-auto transition-transform transform hover:scale-105 cursor-pointer">
+    <div
+      className={`bg-white border-2 border-gray-600 rounded-lg shadow-lg w-full max-w-xs mx-auto transition-all duration-500 transform hover:scale-105 cursor-pointer ${
+        show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      }`}
+    >
       <div onClick={handleClickOnCard}>
         <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
           <img

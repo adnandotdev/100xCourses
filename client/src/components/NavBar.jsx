@@ -10,7 +10,6 @@ export default function NavBar() {
   const [userInitials, setUserInitials] = useState("");
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-
   const toggleMenu = () => {
     // setIsSearchOpen(false);
     setIsOpen(!isOpen);
@@ -221,83 +220,88 @@ export default function NavBar() {
       )} */}
 
       {isOpen && (
-        <div className="md:hidden absolute w-full flex flex-col bg-white mt-0 shadow-lg">
-          <button onClick={toggleMenu} className="self-end absolute mt-0 p-2">
-            <img src="../assets/cancel.png" alt="Cancel" className="w-5" />
-          </button>
-          {isAuthenticated && (
-            <NavLink
-              to="/profile"
-              className="block px-4 py-2"
-              onClick={toggleMenu}
-            >
-              <button className="flex items-center space-x-3">
-                <div className="text-white bg-black rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold">
-                  {userInitials}
-                </div>
-                <div className="flex flex-col items-start">
-                  <p className="font-bold text-indigo-600">Hi, {user.name}</p>
-                  <p className="text-sm text-gray-500">{user.email}</p>
-                </div>
-              </button>
-            </NavLink>
-          )}
+        <div
+          className="min-h-screen absolute w-full bg-transparent"
+          onClick={toggleMenu}
+        >
+          <div className="md:hidden absolute w-full flex flex-col bg-white mt-0 shadow-lg">
+            <button onClick={toggleMenu} className="self-end absolute mt-0 p-2">
+              <img src="../assets/cancel.png" alt="Cancel" className="w-5" />
+            </button>
+            {isAuthenticated && (
+              <NavLink
+                to="/profile"
+                className="block px-4 py-2"
+                onClick={toggleMenu}
+              >
+                <button className="flex items-center space-x-3">
+                  <div className="text-white bg-black rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold">
+                    {userInitials}
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <p className="font-bold text-indigo-600">Hi, {user.name}</p>
+                    <p className="text-sm text-gray-500">{user.email}</p>
+                  </div>
+                </button>
+              </NavLink>
+            )}
 
-          <NavLink
-            to="/"
-            className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
-            onClick={toggleMenu}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/courses"
-            className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
-            onClick={toggleMenu}
-          >
-            Courses
-          </NavLink>
-          {isAuthenticated && (
             <NavLink
-              to="/my-learning"
+              to="/"
               className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
               onClick={toggleMenu}
             >
-              My Learning
+              Home
             </NavLink>
-          )}
-          <NavLink
-            to="/contact"
-            className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
-            onClick={toggleMenu}
-          >
-            Contact
-          </NavLink>
-          {isAuthenticated ? (
-            <div className="flex flex-col px-4 items-center mt-4">
-              <button
-                onClick={handleLogout}
-                className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full mb-2"
+            <NavLink
+              to="/courses"
+              className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
+              onClick={toggleMenu}
+            >
+              Courses
+            </NavLink>
+            {isAuthenticated && (
+              <NavLink
+                to="/my-learning"
+                className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
+                onClick={toggleMenu}
               >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <div className="flex flex-col px-4 items-center mt-4">
-              <button
-                onClick={() => navigate("/signin")}
-                className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full mb-2"
-              >
-                Login
-              </button>
-              <button
-                onClick={() => navigate("/signup")}
-                className="w-full px-4 py-2 mb-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full"
-              >
-                Signup
-              </button>
-            </div>
-          )}
+                My Learning
+              </NavLink>
+            )}
+            <NavLink
+              to="/contact"
+              className="block px-4 py-2 text-indigo-600 font-bold hover:bg-indigo-100"
+              onClick={toggleMenu}
+            >
+              Contact
+            </NavLink>
+            {isAuthenticated ? (
+              <div className="flex flex-col px-4 items-center mt-4">
+                <button
+                  onClick={handleLogout}
+                  className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full mb-2"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col px-4 items-center mt-4">
+                <button
+                  onClick={() => navigate("/signin")}
+                  className="w-full px-4 py-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full mb-2"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => navigate("/signup")}
+                  className="w-full px-4 py-2 mb-2 border-2 border-indigo-600 text-indigo-600 font-bold rounded-full"
+                >
+                  Signup
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </nav>

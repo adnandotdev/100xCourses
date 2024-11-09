@@ -165,8 +165,8 @@ app.post("/signin", async (req, res) => {
     const token = jwt.sign({ email, id: user._id }, process.env.SECRET_KEY);
     res.cookie("token", token,{
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
+      secure: true,
+      sameSite: 'None',
       domain: '.vercel.app',
       path: '/'
     });

@@ -166,9 +166,9 @@ app.post("/signin", async (req, res) => {
     res.cookie("token", token,{
       httpOnly: true,
       secure: true,
-      sameSite: 'None',
-      domain: '.vercel.app',
-      path: '/'
+      // sameSite: 'None',
+      // domain: '.vercel.app',
+      // path: '/'
     });
     return res.status(200).json({
       message: "Login successful",

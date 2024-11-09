@@ -212,11 +212,16 @@ app.get("/user-profile", isUserLoggedIn, async (req, res) => {
   }
 });
 app.get("/logout", async (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  });
   return res.status(200).json({
-    message: "Logged out",
+    message: "Logged out successfully",
   });
 });
+
 app.get("/allcourses", isUserLoggedIn, async (req, res) => {
   const courses = await courseModel.find();
   const user = req.user || null;
@@ -449,12 +454,23 @@ app.get("/admin-profile", isAdminLoggedIn, async (req, res) => {
     });
   }
 });
+// app.get("/admin-logout", async (req, res) => {
+//   res.clearCookie("admin-token");
+//   return res.status(200).json({
+//     message: "Logged out",
+//   });
+// });
 app.get("/admin-logout", async (req, res) => {
-  res.clearCookie("admin-token");
+  res.clearCookie("admin-token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  });
   return res.status(200).json({
-    message: "Logged out",
+    message: "Logged out successfully",
   });
 });
+
 async function isAdminLoggedIn(req, res, next) {
   const token = req.cookies["admin-token"];
   if (token) {

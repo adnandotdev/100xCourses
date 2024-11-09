@@ -6,11 +6,12 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const data = {
       name,
       email,
@@ -35,6 +36,7 @@ export default function SignUp() {
     } catch (error) {
       console.error("Fetch error:", error);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -98,7 +100,7 @@ export default function SignUp() {
           type="submit"
           className="w-full py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white dark:bg-indigo-500 hover:bg-indigo-800 font-semibold rounded-md hover:from-indigo-700 hover:to-purple-700 transition duration-300 shadow-md"
         >
-          Sign Up
+          {isLoading ? "Loading..." : "Sign Up"}
         </button>
       </form>
       <div className="text-center mt-4">

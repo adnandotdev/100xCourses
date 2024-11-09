@@ -4,35 +4,38 @@ import { Link, useNavigate } from "react-router-dom";
 export default function AdminSignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     const data = {
       email,
       password,
     };
-    try{
+    try {
       const response = await fetch(`${backendUrl}/admin-signin`, {
         credentials: "include",
         method: "POST",
-        headers:{
-          "Content-type": "application/json"
+        headers: {
+          "Content-type": "application/json",
         },
-        body: JSON.stringify(data)
-      })
-      const result = await response.json()
-      if(response.ok){
-        navigate("/admin")
-      }  else {
-        alert(result.message)
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        navigate("/admin");
+      } else {
+        alert(result.message);
         console.error("Admin:", response.statusText);
-        navigate("/admin/signin")
+        navigate("/admin/signin");
       }
     } catch (error) {
       console.error("Fetch error:", error);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -81,7 +84,7 @@ export default function AdminSignIn() {
             type="submit"
             className="w-full py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition duration-300 shadow-md"
           >
-            Sign In
+            {isLoading ? "Loading..." : "Sign In"}
           </button>
         </form>
       </div>

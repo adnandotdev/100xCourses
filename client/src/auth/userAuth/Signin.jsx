@@ -27,6 +27,7 @@ export default function SignIn() {
       });
       const result = await response.json();
       if (response.ok) {
+        console.log(document.cookie)
         navigate("/");
       } else {
         alert(result.message);

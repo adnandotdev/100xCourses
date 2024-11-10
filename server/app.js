@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-  origin: "https://100x-courses.vercel.app", 
+  origin: "http://100x-courses.vercel.app", 
   credentials: true,
   methods: ["GET", "POST", "OPTIONS"], 
   allowedHeaders: ["Content-Type", "Authorization"], 

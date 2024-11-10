@@ -170,7 +170,7 @@ app.post("/signin", async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'none',
+      sameSite: 'None',
       domain: '.vercel.app',
       path: '/'
     });

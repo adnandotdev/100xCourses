@@ -6,7 +6,14 @@
 
 ### 🚀 Live Links
 - **User Platform**: [100xCourses](https://100x-courses.vercel.app)
-- **Admin Dashboard**: [Admin Portal](https://100x-courses.vercel.app/admin)
+- **Admin Dashboard**: [Admin Portal](https://100x-courses.vercel.app/admin)  (Demo credentials are provided below)
+
+***Demo credentials for admin***
+```
+email: admin@100xcourses.com
+password: 1111
+
+```
 
 ## 🛠️ Features
 - **User Side**
